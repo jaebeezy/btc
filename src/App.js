@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Chart from "./components/Chart";
 
-import { Container } from "./styles/index";
+import { Container, Card } from "./styles/index";
 
 const App = () => {
   const [btcPrice, setBtcPrice] = useState(0);
@@ -34,19 +34,22 @@ const App = () => {
   return (
     <Container>
       <h1>bitcoin tracker</h1>
+
       <p>{time}</p>
-      {!fetchingData ? (
-        <CountUp
-          end={btcPrice}
-          duration={1.5}
-          decimals={4}
-          decimal="."
-          prefix="USD "
-          separator=","
-        />
-      ) : (
-        <p>loading...</p>
-      )}
+      <Card>
+        {!fetchingData ? (
+          <CountUp
+            end={btcPrice}
+            duration={1.5}
+            decimals={4}
+            decimal="."
+            prefix="USD "
+            separator=","
+          />
+        ) : (
+          <p>loading...</p>
+        )}
+      </Card>
 
       <Chart />
     </Container>
