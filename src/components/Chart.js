@@ -25,20 +25,20 @@ const Chart = () => {
     labels: Object.keys(btc30Data),
     datasets: [
       {
-        label: "Bitcoin Price in USD",
+        label: "bitcoin price in usd",
+        lineTension: 0.2,
         fill: false,
-        lineTension: 0.1,
-        backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "lightgray",
+        borderColor: "lightgray",
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
-        pointBorderColor: "rgba(75,192,192,1)",
+        pointBorderColor: "gray",
         pointBackgroundColor: "#fff",
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBackgroundColor: "gray",
         pointHoverBorderColor: "rgba(220,220,220,1)",
         pointHoverBorderWidth: 2,
         pointRadius: 1,
@@ -50,7 +50,7 @@ const Chart = () => {
 
   return (
     <ChartContainer>
-      <h1>Monthly Price of BTC</h1>
+      <h1>monthly price of btc</h1>
       <Line data={data} />
     </ChartContainer>
   );

@@ -16,7 +16,7 @@ export const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 40%;
 `;
 
 export const Container = styled.div`
@@ -28,4 +28,19 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   animation: 3s ${floating} infinite;
+  span {
+    font-size: 10rem;
+  }
+`;
+
+export const TimeContainer = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

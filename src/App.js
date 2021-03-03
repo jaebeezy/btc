@@ -3,6 +3,8 @@ import CountUp from "react-countup";
 import axios from "axios";
 
 import Chart from "./components/Chart";
+import Time from "./components/Time";
+import Title from "./components/Title";
 
 import { Container, Card } from "./styles/index";
 
@@ -26,6 +28,9 @@ const App = () => {
       }
     };
 
+    if (btcPrice > 0) {
+      document.title = `btc is $${btcPrice}`;
+    }
     const interval = setInterval(fetchBtc, 3000);
 
     return () => clearInterval(interval);
@@ -33,9 +38,9 @@ const App = () => {
 
   return (
     <Container>
-      <h1>bitcoin tracker</h1>
+      <Title />
+      <Time time={time} fetchingData={fetchingData} />
 
-      <p>{time}</p>
       <Card>
         {!fetchingData ? (
           <CountUp
