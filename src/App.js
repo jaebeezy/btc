@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import CountUp from "react-countup";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import Chart from "./components/Chart";
 import Time from "./components/Time";
 import Title from "./components/Title";
+import Price from "./components/Price";
 
 import { Container, Card } from "./styles/index";
 
 const App = () => {
-  const [btcPrice, setBtcPrice] = useState(0);
+  const [btcPrice, setBtcPrice] = useState({});
   const [time, setTime] = useState("");
   const [fetchingData, setFetchingData] = useState(true);
+
+  const prevPrice = useRef({});
 
   useEffect(() => {
     const fetchBtc = async () => {
@@ -21,16 +23,26 @@ const App = () => {
         );
 
         setTime(response.data.time.updated);
-        setBtcPrice(response.data.bpi.USD.rate_float);
+        setBtcPrice({
+          usd: response.data.bpi.USD.rate_float,
+          gbp: response.data.bpi.GBP.rate_float,
+          eur: response.data.bpi.EUR.rate_float,
+        });
         setFetchingData(false);
+        prevPrice.current = {
+          usd: btcPrice.usd,
+          eur: btcPrice.eur,
+          gbp: btcPrice.gbp,
+        };
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (btcPrice > 0) {
-      document.title = `btc is $${btcPrice}`;
+    if (btcPrice.usd > 0) {
+      document.title = `btc is $${btcPrice.usd}`;
     }
+
     const interval = setInterval(fetchBtc, 3000);
 
     return () => clearInterval(interval);
@@ -41,13 +53,11 @@ const App = () => {
       <Title />
       <Card>
         {!fetchingData ? (
-          <CountUp
-            end={btcPrice}
-            duration={1.5}
-            decimals={4}
-            decimal="."
-            prefix="USD "
-            separator=","
+          <Price
+            usd={btcPrice.usd}
+            gbp={btcPrice.gbp}
+            eur={btcPrice.eur}
+            prev={prevPrice.current}
           />
         ) : (
           <p>loading...</p>

@@ -31,8 +31,13 @@ export const Card = styled.div`
   animation: 3s ${floating} infinite;
   span {
     font-size: 10rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
   font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TimeContainer = styled.div`
