@@ -5,8 +5,8 @@ import { TitleContainer } from "../styles/index";
 const Title = () => {
   return (
     <TitleContainer>
-      <h1>bitcoin tracker</h1>
-      <h5>by jae</h5>
+      <h1>1 BTC</h1>
+      <h5>=</h5>
     </TitleContainer>
   );
 };

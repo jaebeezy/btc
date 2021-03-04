@@ -39,8 +39,6 @@ const App = () => {
   return (
     <Container>
       <Title />
-      <Time time={time} fetchingData={fetchingData} />
-
       <Card>
         {!fetchingData ? (
           <CountUp
@@ -55,7 +53,7 @@ const App = () => {
           <p>loading...</p>
         )}
       </Card>
-
+      <Time time={time} fetchingData={fetchingData} />
       <Chart />
     </Container>
   );

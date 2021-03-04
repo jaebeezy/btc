@@ -5,7 +5,7 @@ import { TimeContainer } from "../styles/index";
 const Time = ({ time, fetchingData }) => {
   return (
     <TimeContainer>
-      {!fetchingData ? <p>last updated: {time}</p> : null}
+      {!fetchingData ? <p> updated {time}</p> : null}
     </TimeContainer>
   );
 };

@@ -23,7 +23,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: "Poppins", sans-serif;
+
+  font-family: "Helvetica Neue", sans-serif;
 `;
 
 export const Card = styled.div`
@@ -31,16 +32,28 @@ export const Card = styled.div`
   span {
     font-size: 10rem;
   }
+  font-family: "Poppins", sans-serif;
 `;
 
 export const TimeContainer = styled.div`
-  &:hover {
-    cursor: pointer;
-  }
+  margin: 20px;
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    margin: 50px 0px 0px 0px;
+    padding: 0;
+  }
+
+  h5 {
+    margin: 0;
+    padding: 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
