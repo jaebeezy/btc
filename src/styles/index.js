@@ -23,6 +23,10 @@ export const ChartContainer = styled.div`
   align-items: center;
   width: 40%;
   margin-bottom: 20px;
+
+  @media (max-width: 880px) {
+    display: none;
+  }
 `;
 
 export const Container = styled.div`
@@ -47,12 +51,28 @@ export const Card = styled.div`
   .clicked {
     font-size: 10rem;
     color: black;
+
+    @media (max-width: 450px) {
+      font-size: 30px;
+    }
+
+    @media (max-width: 900px) and (min-width: 450px) {
+      font-size: 50px;
+    }
+
+    @media (max-width: 1333px) and (min-width: 900px) {
+      font-size: 78px;
+    }
   }
 
   span {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  @media (max-width: 450px) {
+    font-size: 24px;
   }
 `;
 
