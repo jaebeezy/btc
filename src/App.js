@@ -6,12 +6,17 @@ import Time from "./components/Time";
 import Title from "./components/Title";
 import Price from "./components/Price";
 
-import { Container, Card } from "./styles/index";
+import { Container, Card, Spinner } from "./styles/index";
 
 const App = () => {
   const [btcPrice, setBtcPrice] = useState({});
   const [time, setTime] = useState("");
   const [fetchingData, setFetchingData] = useState(true);
+  const [isClicked, setIsClicked] = useState({
+    usd: true,
+    gbp: false,
+    eur: false,
+  });
 
   const prevPrice = useRef({});
 
@@ -39,14 +44,20 @@ const App = () => {
       }
     };
 
-    if (btcPrice.usd > 0) {
+    if (btcPrice.usd > 0 && isClicked.usd) {
       document.title = `btc is $${btcPrice.usd}`;
+    }
+    if (btcPrice.gbp > 0 && isClicked.gbp) {
+      document.title = `btc is £${btcPrice.gbp}`;
+    }
+    if (btcPrice.eur > 0 && isClicked.eur) {
+      document.title = `btc is €${btcPrice.eur}`;
     }
 
     const interval = setInterval(fetchBtc, 3000);
 
     return () => clearInterval(interval);
-  }, [btcPrice]);
+  }, [btcPrice, isClicked]);
 
   return (
     <Container>
@@ -54,13 +65,13 @@ const App = () => {
       <Card>
         {!fetchingData ? (
           <Price
-            usd={btcPrice.usd}
-            gbp={btcPrice.gbp}
-            eur={btcPrice.eur}
+            price={btcPrice}
             prev={prevPrice.current}
+            isClicked={isClicked}
+            setIsClicked={setIsClicked}
           />
         ) : (
-          <p>loading...</p>
+          <Spinner />
         )}
       </Card>
       <Time time={time} fetchingData={fetchingData} />
